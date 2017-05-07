@@ -1,4 +1,4 @@
-package popularity.service.client;
+package service.client;
 
 import populaity.service.loader.TextPopularityService;
 
