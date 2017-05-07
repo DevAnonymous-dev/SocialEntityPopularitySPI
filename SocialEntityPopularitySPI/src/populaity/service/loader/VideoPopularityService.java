@@ -1,8 +1,11 @@
 package populaity.service.loader;
 
+import java.util.Iterator;
+import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
 
 import popularity.spi.VideoPopularity;
+import video.popularity.provider.VideoFeedBackMetrics;
 
 //implements singleton pattern
 public class VideoPopularityService {
@@ -23,5 +26,23 @@ public class VideoPopularityService {
 		}
 		return service;
 	}
+	 public VideoFeedBackMetrics getVideoFeedBackMetrics ( String url){
+	    	VideoFeedBackMetrics feedbackMetrics= null;
+	    	try{
+	    		Iterator<VideoPopularity> providers = loader.iterator();
+	    		while (feedbackMetrics==null && providers.hasNext()){
+	    			VideoPopularity videoPopularity= providers.next();
+	    			feedbackMetrics =videoPopularity.getVideoFeedBackMetada(url) ;
+	    			
+	    		}
+	    	}
+	    		catch (ServiceConfigurationError serviceError){
+	    			feedbackMetrics=null;
+	    			
+	    			serviceError.printStackTrace();
+	    		}
+	    	return feedbackMetrics;
+	    	
+	    }
 
 }
