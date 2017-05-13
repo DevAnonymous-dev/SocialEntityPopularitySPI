@@ -2,7 +2,8 @@
 Sample Java SPI (Service Provider Interfacce) Demo provides unified services for defining social entities (i.e. text, video, photo and user) popularities indepedantlay on social networks they belong to.
 
 Introduction
-The demo app include 2 jar projects 
+
+The demo app include 2 SPI (jar files)
 
 1. MediaPoularityService
 
