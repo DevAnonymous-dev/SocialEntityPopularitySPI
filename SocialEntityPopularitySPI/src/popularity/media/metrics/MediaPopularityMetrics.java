@@ -18,6 +18,11 @@ public class MediaPopularityMetrics {
 		this.authorMetrics = authorMetrics;
 	}
 
+	public MediaPopularityMetrics() {
+		super();
+		
+	}
+
 
 
 	
