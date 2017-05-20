@@ -1,0 +1,3 @@
+com.popularity.media.provider.TwitterTextPopularity
+com.popularity.media.provider.YouTubeVideoPopularity
+com.popularity.media.provider.FlickerPhotoPopularity
