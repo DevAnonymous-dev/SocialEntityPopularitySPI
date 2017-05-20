@@ -7,7 +7,8 @@ public class SearchProviderDemo {
 	       
 		 MediaPopularityService  mps = new MediaPopularityService ();
 		 //System.out.println(  mps.getPopularityMetadataMetrics("Text", "865254537451495424"));
-		System.out.println (mps.getProfileMetadata("RadioMosaiqueFM"));
+		//System.out.println (mps.getProfileMetadata("RadioMosaiqueFM"));
+	//	 System.out.println ()
 	   
 	    }
 

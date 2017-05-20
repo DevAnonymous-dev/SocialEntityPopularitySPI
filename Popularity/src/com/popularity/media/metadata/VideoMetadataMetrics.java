@@ -24,6 +24,18 @@ public class VideoMetadataMetrics extends  MediaMetadataMetrics{
 		this.tag = tag;
 		this.duration = duration;
 	}
+	
+	
+	public VideoMetadataMetrics( String url, Date ceratedAt,
+			String name, String description, String category, String tag,
+			String duration) {
+		super( url, ceratedAt);
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.tag = tag;
+		this.duration = duration;
+	}
 	public String getTag() {
 		return tag;
 	}

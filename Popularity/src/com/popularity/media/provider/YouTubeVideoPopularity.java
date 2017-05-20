@@ -7,10 +7,6 @@ import com.popularity.user.metrcis.UserPopularityMetrics;
 
 public class YouTubeVideoPopularity implements MediaPopularity{
 	
-	
-	
-	
-
 	@Override
 	public String getProviderName() {
 	
