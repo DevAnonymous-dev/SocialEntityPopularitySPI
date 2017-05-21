@@ -62,7 +62,7 @@ public UserPopularityMetrics getPopularity (String name);
 	
 }
 ```
-###### 2. Providers : SPI impelementation
+###### 3. Providers : SPI impelementation
 
 The application includes three service providers. These providers implement the two SPI (media and user popularity SPI).They encapsulate popularity metrics correspond to video entity by implementing MediaPopularity for the a YouTube Video, for the text entity we implemented MediaPopularity SPI for a tweet on Twitter and for the user we implemented UserPopularity SPI for a Facebook User and Twitter User. 
 
