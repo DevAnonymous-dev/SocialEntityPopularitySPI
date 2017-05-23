@@ -30,10 +30,8 @@ These classes are used for
        * [UserConnectivityMetadata] - It exists under the package com.popularity.user.metrcis and encapsulates attributes related to the user connectivity
 > 
     Media
-       * [MediaMetadataMetric]: it exists under the package com.popularity.media.metadata, regroups the commun metadata attributes between media entities and extended by three other auxiliary classes corresponding to the specific metadata  of each media type (i.e.  text, photo and video)
-        
-       * [MediaUserFeedBackMetrics]:  It exists under the package com.popularity.media.Feedback, regroups the commun user feedback attributes between media entities and extended by another auxiliary class which corresponds to the specific feedbacks of the video entity
-       
+       * [MediaMetadataMetric]: It exists under the package com.popularity.media.metadata, regroups the commun metadata attributes between media entities and extended by three other auxiliary classes corresponding to the specific metadata  of each media type (i.e.  text, photo and video)
+       * [MediaUserFeedBackMetrics]:  It exists under the package com.popularity.media.Feedback, regroups the commun user feedback attributes between media entities and extended by another auxiliary class which corresponds to the specific feedbacks of the video entity    
        * [UserPopularityMetrics]: It corresponds to the user auxiliary classes, the user is the author of the media entity.
 ###### 2. SPI
 * Media Popularity SPI: 
