@@ -85,7 +85,7 @@ So, the application contains Twitter search, Facebook search and YouTube search 
 ### Client Demo:
 
  The Client Demo is the test part of the implemented SPI. It includes three main classes: 
-the client service corresponds to "SearchProviderDemo" and the service loader [MediaPoularityService](https://github.com/hibaSbei/SocialEntityPopularitySPI/blob/master/Popularity/src/com/popularity/loader/MediaPopularityService.java).
+the client service corresponds to [SearchProviderDemo](https://github.com/hibaSbei/SocialEntityPopularitySPI/blob/master/Popularity/src/com/popularity/client/demo/SearchProviderDemo.java) and the service loader [MediaPoularityService](https://github.com/hibaSbei/SocialEntityPopularitySPI/blob/master/Popularity/src/com/popularity/loader/MediaPopularityService.java).
  
  * The client service: correspond contains the main method, the client of the SPI invokes the appropriate method for executing the UserPopularity SPI or the MediaPopularity SPI. For executing the UserPopularity SPI  the client provides values correspond to the name of the user and the target social network. For the MediaPopularity SPI the client invokes the id of the target media, the type of the media and the desired social network.
  
