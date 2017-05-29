@@ -54,6 +54,15 @@ public class MediaMetadataMetrics {
 		this.url = url;
 	}
 
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	@Override
 	public String toString() {
 		return "MediaMetadataMetrics [id=" + id + ", url=" + url

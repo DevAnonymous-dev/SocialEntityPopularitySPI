@@ -4,30 +4,31 @@ import java.util.Iterator;
 import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
 
+import com.popularity.media.feedback.MediaUserFeedBackMetrics;
 import com.popularity.media.metadata.MediaMetadataMetrics;
 import com.popularity.spi.MediaPopularity;
-import com.popularity.spi.UserPopularity;
-import com.popularity.user.metrcis.UserProfileMetadata;
+import com.popularity.user.metrcis.UserPopularityMetrics;
 
 public class MediaPopularityService {
 	private static MediaPopularityService service;
 
 	ServiceLoader<MediaPopularity> medialoader;
-	ServiceLoader <UserPopularity> userloader;
+
 	MediaPopularity provider = null;
 
 	public MediaPopularityService() {
 		medialoader = ServiceLoader.load(MediaPopularity.class);
-		userloader = ServiceLoader.load(UserPopularity.class);
+	
 	}
 	 public static synchronized  MediaPopularityService getInstance() {
 	        if (service == null) {
 	            service = new  MediaPopularityService ();
+	            
 	        }
 	        return service;
 	    }
 
-	public MediaPopularity searchProvider(String media_Type) {
+	public MediaPopularity searchProvider(String media_Type, String social_media) {
 	
 		
 		boolean find = false;
@@ -38,10 +39,10 @@ public class MediaPopularityService {
 			while ((providers.hasNext() == true) && (find == false)) {
 				provider = providers.next();
 
-				if (provider.getClass().getName().contains(media_Type) == true) {
+				if ((provider.getClass().getName().contains(media_Type) == true) &&((provider.getClass().getName().contains(social_media) == true) )){
 					find = true;
 					System.out.println("provider name = "
-							+ provider.getClass().getName());
+							+ provider.getClass().getName()+ "\n");
 				
 				}
 
@@ -53,43 +54,29 @@ public class MediaPopularityService {
 		return provider;
 	}
 	
-	public  MediaMetadataMetrics getPopularityMetadataMetrics (String media_Type, String media_id){
+	public  MediaMetadataMetrics getPopularityMetadataMetrics (String media_Type, String media_id, String social_media){
 		//search provider
-		provider= searchProvider(media_Type);	
+		provider= searchProvider(media_Type, social_media);	
 		return provider.getmetadata(media_id);
 		
 
 		
 	}
 	
-	public  UserProfileMetadata getProfileMetadata(String name){
-		UserProfileMetadata userMetadata = null;
+	public  MediaUserFeedBackMetrics getPopularityFeedBackMetrics(String media_Type, String media_id, String social_media) {
+		provider= searchProvider(media_Type, social_media);
+		return provider.getUserFeeBack(media_id);
 		
-		try {
-			Iterator <UserPopularity>providers = userloader.iterator();
-			if (providers.hasNext()){
-				System.out.println("true");
-			}
-			else 
-				System.out.println(" no provider false");
-			 
-			while (providers.hasNext()){
-				
-				UserPopularity user = providers.next();
-				System.out.println(" userPopularity"+ user.getClass());
-				userMetadata= user.getMetadata(name);
-				System.out.println("userMetadata"+userMetadata.toString());
-			}
-			
-		}
-		catch(ServiceConfigurationError serviceError){
-			userMetadata =null;
-			 serviceError.printStackTrace();
-		}
-		
-		return userMetadata;
 	}
+	public UserPopularityMetrics getAuthorPopularityMetrics(String media_Type, String media_id, String social_media) {
+		System.out.println ("Media popularity service");
+		provider= searchProvider(media_Type, social_media);
 		
+		return provider.getAuthorPopularity(media_id);
+		
+	}
+
+	
 	
 	
 }

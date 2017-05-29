@@ -11,7 +11,7 @@ public class TwitterUserPopularityProvider implements UserPopularity{
 
 	@Override
 	public UserProfileMetadata getMetadata(String name) {
-		
+	
 		TwitterTextSearch tts= new TwitterTextSearch();
 		return tts.getUserPopularityMetricsById(name);
 	}
