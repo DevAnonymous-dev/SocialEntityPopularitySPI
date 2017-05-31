@@ -29,7 +29,6 @@ public class TwitterTextPopularity implements MediaPopularity {
 	}
 	
 	//text author metrics
-
 	@Override
 	public UserPopularityMetrics getAuthorPopularity(String id_media) {
 		System.out.println ("TwitterTextPopularity author popularity");

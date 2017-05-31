@@ -1,21 +1,21 @@
 package com.popularity.media.feedback;
 
 public class VideoUserFeedBackMetrics extends MediaUserFeedBackMetrics {
-	private int nbRating;
+	private String nbRating;
 	private int nbView;
 	
 	public VideoUserFeedBackMetrics(int nbShare, int nbComments,
-			int nbPositiveVote, int nbNegativeVote, int nbRating, int nbView) {
+			int nbPositiveVote, int nbNegativeVote, String nbRating, int nbView) {
 		super(nbShare, nbComments, nbPositiveVote, nbNegativeVote);
 		this.nbRating = nbRating;
 		this.nbView = nbView;
 	}
 
-	public int getNbRating() {
+	public String getNbRating() {
 		return nbRating;
 	}
 
-	public void setNbRating(int nbRating) {
+	public void setNbRating(String nbRating) {
 		this.nbRating = nbRating;
 	}
 

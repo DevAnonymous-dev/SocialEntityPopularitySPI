@@ -2,6 +2,9 @@ package com.popularity.search;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -12,6 +15,7 @@ import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.Video;
+import com.google.api.services.youtube.model.VideoGetRatingResponse;
 import com.google.api.services.youtube.model.VideoListResponse;
 import com.popularity.authentification.Auth;
 import com.popularity.media.feedback.VideoUserFeedBackMetrics;
@@ -61,23 +65,33 @@ public class YouTubeVideoSearch {
 						}
 					}).setApplicationName("YouTubeSearch").build();
 
+			
 			// Define the API request for retrieving search results.
 
 			HashMap<String, String> parameters = new HashMap<>();
 			parameters.put("part", "snippet,contentDetails,statistics");
-			parameters.put("id", "Ks-_Mh1QhMc");
+			parameters.put("id", id);
+			 parameters.put("onBehalfOfContentOwner", "");
+
+		     
 			com.google.api.services.youtube.YouTube.Videos.List list = youtube
 					.videos().list(parameters.get("part").toString());
 			 if (parameters.containsKey("id") && parameters.get("id") != "") {
 		           list.setId(parameters.get("id").toString());
 		        }
+			   YouTube.Videos.GetRating videosGetRatingRequest = youtube.videos().getRating(parameters.get("id").toString());
+		        if (parameters.containsKey("onBehalfOfContentOwner") && parameters.get("onBehalfOfContentOwner") != "") {
+		            videosGetRatingRequest.setOnBehalfOfContentOwner(parameters.get("onBehalfOfContentOwner").toString());
+		        }
 
-			// Set your developer key from the Google API Console for
-			// non-authenticated requests. See:
-			// https://console.developers.google.com/
-			String apiKey = properties.getProperty("youtube.apikey");
-			list.setKey(apiKey);
-
+		    	// Set your developer key from the Google API Console for
+				// non-authenticated requests. See:
+				// https://console.developers.google.com/
+				String apiKey = properties.getProperty("youtube.apikey");
+				
+				list.setKey(apiKey);
+				VideoGetRatingResponse rating = videosGetRatingRequest.execute();
+			
 			VideoListResponse response = list.execute();
 		video = response.getItems().get(0);
 			System.out.println("video" + video.toString());
@@ -97,25 +111,41 @@ public class YouTubeVideoSearch {
 	}
 	
 	// search video metadata
-		public VideoMetadataMetrics getTextMetadataById(String VideoId) {
+		public VideoMetadataMetrics getVideoMetadataById(String VideoId) {
+			Date date = null ;
+			System.out.println ("********video popularity metadata************^n");
 			Video v =searchVideo(VideoId);
-			VideoMetadataMetrics videoMetadata = new VideoMetadataMetrics(null,null, v.getSnippet().getTitle(),  v.getSnippet().getDescription(),  v.getSnippet().getCategoryId(), v.getSnippet().getTags().toString(), v.getFileDetails().getDurationMs().toString());
+			
+			
+			SimpleDateFormat dateDisplayFormat = new SimpleDateFormat("dd/MM/yyyy"); 
+			try {
+				 date = dateDisplayFormat.parse(v.getSnippet().getPublishedAt().toString());
+			} catch (ParseException e) {
 				
-
-			return videoMetadata;
-
-		}
-
+				e.printStackTrace();
+			} 
 		
+			String url = "youtube.com/watch?v=" + VideoId;
+		
+			VideoMetadataMetrics videoMetadata = new VideoMetadataMetrics(url,date,v.getSnippet().getTitle(), v.getSnippet().getDescription(),  v.getSnippet().getCategoryId(), v.getSnippet().getTags().toString(), v.getFileDetails().getDurationMs().toString());
+			System.out.println ("Video popularity metadata: "+ videoMetadata.toString());
+			
+			return videoMetadata;
+		}
 		// search video feedback
 		public VideoUserFeedBackMetrics getVideoFeedBackById(String VideoId) {
 			Video v =searchVideo(VideoId);
-			VideoUserFeedBackMetrics videofeedBack= new VideoUserFeedBackMetrics(0,0,0,
-					0,0,0);
-				
-
+			VideoUserFeedBackMetrics videofeedBack= new VideoUserFeedBackMetrics(0,v.getStatistics().getCommentCount().intValue(),
+					v.getStatistics().getFavoriteCount().intValue()+v.getStatistics().getLikeCount().intValue(),
+					v.getStatistics().getDislikeCount().intValue(),
+				"",
+					v.getStatistics().getViewCount().intValue());
+			System.out.println (" video feedback "+ videofeedBack.toString());
+		
 			return videofeedBack;
 
 		}
+
+	
 
 }
