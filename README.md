@@ -1,9 +1,5 @@
-# Social entities popularity metrics SPI across social networks 
+# Popularity metrics’ normalization for social media entities
 ===========
-
-
-This work is the subject of a submission to the conference AICCSA 2017
-
 
 ### Overview
 
