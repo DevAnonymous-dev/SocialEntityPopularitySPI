@@ -96,5 +96,5 @@ In the case of the absence of desired social network the client can extend the S
 
 Creating Extensible Applications (The Java™ Tutorials > The Extension Mechanism > Creating and Using Extensions) https://docs.oracle.com/javase/tutorial/ext/basics/spi.html
 
-Singleton Design Pattern (https://docs.oracle.com/javase/tutorial/ext/basics/spi.html#singleton
+Singleton Design Pattern https://docs.oracle.com/javase/tutorial/ext/basics/spi.html#singleton
 
