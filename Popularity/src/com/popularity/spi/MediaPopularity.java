@@ -18,8 +18,8 @@ public interface MediaPopularity {
 	public UserPopularityMetrics getAuthorPopularity (String id_media);
 	
 	//service to  add media popularity metadata 
-	public boolean defineMediaPopularityMetadataMetrics (String media_url);
+	public boolean defineMediaPopularityMetadataMetrics ();
 	
 	//service to  add the media is user popularity metadata 
-	public boolean defineMediaPopularityUsertFeedBackMetrics (String media_url);
+	public boolean defineMediaPopularityUsertFeedBackMetrics ();
 }
