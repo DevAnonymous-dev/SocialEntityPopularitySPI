@@ -75,7 +75,7 @@ public class MediaPopularityService {
 		return provider.getAuthorPopularity(media_id);
 		
 	}
-
+   
 	
 	
 	
