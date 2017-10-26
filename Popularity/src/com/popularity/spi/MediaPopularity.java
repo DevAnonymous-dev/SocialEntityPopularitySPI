@@ -16,4 +16,10 @@ public interface MediaPopularity {
 	
 	// service for encapsulate the metrics of the author of the media entity (i.e. Text, Photo and Video) correpond to the id_media
 	public UserPopularityMetrics getAuthorPopularity (String id_media);
+	
+	//service to  add media popularity metadata 
+	public void defineMediaPopularityMetadataMetrics (String media_url);
+	
+	//service to  add the media is user popularity metadata 
+	public void defineMediaPopularityUsertFeedBackMetrics (String media_url);
 }
